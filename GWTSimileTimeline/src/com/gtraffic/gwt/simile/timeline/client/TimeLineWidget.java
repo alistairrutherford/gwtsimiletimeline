@@ -16,38 +16,47 @@
 
 package com.gtraffic.gwt.simile.timeline.client;
 
-import com.google.gwt.user.client.Element;
-
 import java.util.ArrayList;
+
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.Widget;
 
 
 /**
- * Simile Timline GWT wrapper class.
- *
+ * The SIMILE Timeline Widget
+ * <br/>Example:
+ * <br/>TimeLineWidget simWidget = new SimileWidget(e);
+ * <br/>
+ * <br/>access the Simile object by:
+ * <br/>Simile sim = simWidget.getTimeLine();
+ * 
  * @author ajr
+ *
  */
-public class SimileTimeLine
+public class TimeLineWidget extends Widget
 {
-    private Element divElement = null;
     private EventSource eventSource = null;
+    private TimeLine timeline = null;
     private ArrayList bandInfos = null;
-    private TimeLine timeLine = null;
+    private Element divElement = null;
 
-    public SimileTimeLine(Element e)
+    public TimeLineWidget(String height, String width)
     {
+        eventSource = EventSource.create();
         bandInfos = new ArrayList();
         
-        divElement = e;
-        eventSource = EventSource.create();
-
-        timeLine = createTimeLine();
+        divElement = DOM.createDiv();
+        setElement(divElement);
+        setHeight(height);
+        setWidth(width);
     }
 
     /**
      * Creates default timeline view, override this to generate your own
      *
      */
-    protected TimeLine createTimeLine()
+    protected TimeLine create()
     {
         // Create Theme object
         Theme theme = createTheme();
@@ -86,7 +95,7 @@ public class SimileTimeLine
 
     /**
      * Creates default theme, override to apply your own.
-     *
+     * 
      */
     public Theme createTheme()
     {
@@ -96,7 +105,30 @@ public class SimileTimeLine
     }
 
     /**
-     * Load timeline data from url.
+     * Repaint widget 
+     */
+    public void layout()
+    {
+        if (visible())
+        {
+            getTimeLine().layout();
+        }
+    }
+    
+    /**
+     * Clear display artifacts 
+     */
+    public void clear()
+    {
+        if (visible())
+        {
+            getTimeLine().clear();
+        }
+    }
+    
+    /**
+     * Load data into widget
+     * 
      * @param dataUrl
      */
     public void load(String dataUrl)
@@ -105,39 +137,29 @@ public class SimileTimeLine
     }
 
     /**
-     * Redraws timline view to fit enclosing frame.
-     *
+     * Get timeline instance
+     * 
+     * @return
      */
-    public void layout()
-    {
-        timeLine.layout();
-    }
-
-    /**
-     * Clear all display artifacts (i.e. bubbles) from view
-     *
-     */
-    public void clear()
-    {
-        timeLine.clear();
-    }
-
-    /**
-     * Reset timeline data display. Clears out current timeline display.
-     *
-     */
-    public void reset()
-    {
-        eventSource.clear();
-    }
-
     public TimeLine getTimeLine()
     {
-        return timeLine;
+        if (timeline==null)
+        {
+            timeline = create();
+        }
+        
+        return timeline;
     }
 
-    public ArrayList getBands()
+    /**
+     * Returns whether the timeline view is visible or not. Operations on the timeline
+     * will throw an exception unless it is visible.
+     * 
+     * @return visible status
+     */
+    public boolean visible()
     {
-        return bandInfos;
+        return TimeLineImpl.visible(divElement);
     }
+    
 }
