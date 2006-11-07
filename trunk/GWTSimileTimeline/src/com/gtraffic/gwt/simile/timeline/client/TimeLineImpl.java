@@ -50,10 +50,6 @@ class TimeLineImpl
         }
     }-*/;
 
-    public native static void paint(TimeLine timeLine) /*-{
-        timeLine.paint();
-    }-*/;
-
     public native static void clearBubbles(TimeLine timeLine) /*-{
         var count = timeLine.getBandCount();
         for (var i=0; i<count; i++)
@@ -61,5 +57,13 @@ class TimeLineImpl
             timeLine.getBand(i).closeBubble();
         }
     }-*/;
+    
+    public native static boolean visible(Element divElement) /*-{
+        if (divElement.style.display!='none')
+            return true;
+        else
+            return false;
+    }-*/;
+
     
 }
