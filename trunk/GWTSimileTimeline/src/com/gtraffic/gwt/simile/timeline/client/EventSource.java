@@ -39,9 +39,18 @@ public class EventSource extends JavaScriptObject
      * Load data stream into timeline event source
      * @param dataUrl
      */
-    public void load(String dataUrl)
+    public void loadXML(String dataUrl)
     {
         EventSourceImpl.loadXML(dataUrl, this);
+    }
+
+    /**
+     * Load data stream into timeline event source
+     * @param dataUrl
+     */
+    public void load(JavaScriptObject xml, String url)
+    {
+        EventSourceImpl.loadXML(xml, url, this);
     }
     
 

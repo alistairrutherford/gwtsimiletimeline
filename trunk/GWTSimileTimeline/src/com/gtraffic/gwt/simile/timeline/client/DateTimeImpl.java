@@ -29,51 +29,51 @@ class DateTimeImpl
     }-*/;
 
     public native static int SECOND()/*-{
-    return $wnd.Timeline.DateTime.SECOND;
+    	return $wnd.Timeline.DateTime.SECOND;
     }-*/;
     
     public native static int MINUTE()/*-{
-    return $wnd.Timeline.DateTime.MINUTE;
+    	return $wnd.Timeline.DateTime.MINUTE;
     }-*/;
     
     public native static int HOUR()/*-{
-    return $wnd.Timeline.DateTime.HOUR;
+    	return $wnd.Timeline.DateTime.HOUR;
     }-*/;
 
     public native static int DAY()/*-{
-    return $wnd.Timeline.DateTime.DAY;
+    	return $wnd.Timeline.DateTime.DAY;
     }-*/;
 
     public native static int WEEK()/*-{
-    return $wnd.Timeline.DateTime.WEEK;
+    	return $wnd.Timeline.DateTime.WEEK;
     }-*/;
     
     public native static int MONTH()/*-{
-    return $wnd.Timeline.DateTime.MONTH;
+    	return $wnd.Timeline.DateTime.MONTH;
     }-*/;
     
     public native static int YEAR()/*-{
-    return $wnd.Timeline.DateTime.YEAR;
+    	return $wnd.Timeline.DateTime.YEAR;
     }-*/;
     
     public native static int DECADE()/*-{
-    return $wnd.Timeline.DateTime.DECADE;
+    	return $wnd.Timeline.DateTime.DECADE;
     }-*/;
     
     public native static int CENTURY()/*-{
-    return $wnd.Timeline.DateTime.CENTURY;
+    	return $wnd.Timeline.DateTime.CENTURY;
     }-*/;
     
     public native static int MILLENNIUM()/*-{
-    return $wnd.Timeline.DateTime.MILLENNIUM;
+    	return $wnd.Timeline.DateTime.MILLENNIUM;
     }-*/;
 
     public native static int EPOCH()/*-{
-    return $wnd.Timeline.DateTime.EPOCH;
+    	return $wnd.Timeline.DateTime.EPOCH;
     }-*/;
 
     public native static int ERA()/*-{
-    return $wnd.Timeline.DateTime.ERA;
+    	return $wnd.Timeline.DateTime.ERA;
     }-*/;
     
 }

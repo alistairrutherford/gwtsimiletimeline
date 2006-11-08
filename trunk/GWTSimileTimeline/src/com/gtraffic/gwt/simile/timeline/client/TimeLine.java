@@ -63,13 +63,33 @@ public class TimeLine extends JavaScriptObject
         return array;
     }
 
+    /**
+     * Redraw timeline 
+     *
+     */
     public void layout()
     {
         TimeLineImpl.layout(this);
     }
 
-    public void clear()
+    /**
+     * loadXML through handler function.
+     * 
+     * @param dataUrl
+     * @param handler
+     */
+    public void loadXML(String dataUrl, TimelineXMLHandler handler)
     {
-        TimeLineImpl.clearBubbles(this);
+        TimeLineImpl.loadXML(dataUrl, handler);
     }
+ 
+    /**
+     * Close info bubble for indicated band
+     * @param index
+     */
+    public void closeBubble(int index)
+    {
+    	TimeLineImpl.closeBubble(index, this);
+    }
+    
 }

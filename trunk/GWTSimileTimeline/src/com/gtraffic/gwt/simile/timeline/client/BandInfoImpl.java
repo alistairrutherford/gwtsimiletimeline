@@ -32,10 +32,6 @@ class BandInfoImpl
         return $wnd.Timeline.createBandInfo(options)
     }-*/;
     
-    public native static void closeBubble(BandInfo band) /*-{
-        band.closeBubble();
-    }-*/;
-    
     public native static void setSyncWith(BandInfo band, int index) /*-{
         band.syncWith = index;
     }-*/;
