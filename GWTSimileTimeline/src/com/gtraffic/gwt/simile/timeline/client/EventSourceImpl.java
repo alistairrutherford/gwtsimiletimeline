@@ -16,6 +16,8 @@
 
 package com.gtraffic.gwt.simile.timeline.client;
 
+import com.google.gwt.core.client.JavaScriptObject;
+
 /**
  * EventSourceImpl
  * 
@@ -30,7 +32,6 @@ class EventSourceImpl
     
     public native static EventSource createEventSourceObject() /*-{
         var source = new $wnd.Timeline.DefaultEventSource();
-    
         return source;
     }-*/;
 
@@ -38,6 +39,10 @@ class EventSourceImpl
         source.clear();
     }-*/;
 
+    public native static void loadXML(JavaScriptObject xml, String url, EventSource source) /*-{
+    	source.loadXML(xml, url);
+    }-*/;
+    
     public native static void loadXML(String dataUrl, EventSource eventSource) /*-{
         $wnd.Timeline.loadXML(dataUrl, function(xml, url) { eventSource.loadXML(xml, url); });
     }-*/;

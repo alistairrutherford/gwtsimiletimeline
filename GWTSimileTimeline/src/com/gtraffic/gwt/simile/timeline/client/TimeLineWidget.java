@@ -1,26 +1,25 @@
 /*
  * Copyright 2006 Alistair Rutherford (http://code.google.com/p/gwtsimiletimeline/)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 package com.gtraffic.gwt.simile.timeline.client;
-
-import java.util.ArrayList;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Widget;
+
+import java.util.ArrayList;
 
 
 /**
@@ -30,7 +29,7 @@ import com.google.gwt.user.client.ui.Widget;
  * <br/>
  * <br/>access the Simile object by:
  * <br/>Simile sim = simWidget.getTimeLine();
- * 
+ *
  * @author ajr
  *
  */
@@ -45,7 +44,7 @@ public class TimeLineWidget extends Widget
     {
         eventSource = EventSource.create();
         bandInfos = new ArrayList();
-        
+
         divElement = DOM.createDiv();
         setElement(divElement);
         setHeight(height);
@@ -64,7 +63,7 @@ public class TimeLineWidget extends Widget
 
         BandOptions topOpts = BandOptions.create();
         topOpts.setWidth("5%");
-        topOpts.setIntervalUnit(DateTime.YEAR());
+        topOpts.setIntervalUnit(DateTime.CENTURY());
         topOpts.setIntervalPixels(400);
         topOpts.setShowEventText(false);
         topOpts.setTheme(theme);
@@ -76,18 +75,18 @@ public class TimeLineWidget extends Widget
         bottomOpts.setWidth("95%");
         bottomOpts.setTrackHeight(1.3f);
         bottomOpts.setTrackGap(0.1f);
-        bottomOpts.setIntervalUnit(DateTime.MONTH());
+        bottomOpts.setIntervalUnit(DateTime.CENTURY());
         bottomOpts.setIntervalPixels(100);
         bottomOpts.setShowEventText(true);
         bottomOpts.setTheme(theme);
         bottomOpts.setEventSource(eventSource);
-        
+
         BandInfo bottom = BandInfo.create(bottomOpts);
         bandInfos.add(bottom);
 
         bottom.setSyncWith(0);
         bottom.setHighlight(true);
-        
+
         TimeLine timeLine = TimeLine.create(bandInfos, eventSource, divElement);
 
         return timeLine;
@@ -95,7 +94,7 @@ public class TimeLineWidget extends Widget
 
     /**
      * Creates default theme, override to apply your own.
-     * 
+     *
      */
     public Theme createTheme()
     {
@@ -105,7 +104,7 @@ public class TimeLineWidget extends Widget
     }
 
     /**
-     * Repaint widget 
+     * Repaint widget
      */
     public void layout()
     {
@@ -114,52 +113,71 @@ public class TimeLineWidget extends Widget
             getTimeLine().layout();
         }
     }
-    
+
     /**
-     * Clear display artifacts 
+     * Clear display artifacts
      */
     public void clear()
     {
         if (visible())
         {
-            getTimeLine().clear();
+        	int count = bandInfos.size();
+        	while (--count>0)
+        	{
+        		timeline.closeBubble(count);
+        	}
         }
     }
-    
+
     /**
-     * Load data into widget
-     * 
+     * Load data into widget through handler.
+     *
+     * @param dataUrl
+     * @param handler
+     */
+    public void load(String dataUrl, TimelineXMLHandler handler)
+    {
+        timeline.loadXML(dataUrl, handler);
+    }
+
+    /**
+     * Load data into widget through EventSource object.
+     *
      * @param dataUrl
      */
     public void load(String dataUrl)
     {
-        eventSource.load(dataUrl);
+    	eventSource.loadXML(dataUrl);
     }
-
+    
     /**
      * Get timeline instance
-     * 
+     *
      * @return
      */
     public TimeLine getTimeLine()
     {
-        if (timeline==null)
+        if (timeline == null)
         {
             timeline = create();
         }
-        
+
         return timeline;
     }
 
     /**
      * Returns whether the timeline view is visible or not. Operations on the timeline
      * will throw an exception unless it is visible.
-     * 
+     *
      * @return visible status
      */
     public boolean visible()
     {
         return TimeLineImpl.visible(divElement);
     }
-    
+
+    public EventSource getEventSource()
+    {
+        return eventSource;
+    }
 }

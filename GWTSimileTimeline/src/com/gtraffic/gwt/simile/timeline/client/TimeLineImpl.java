@@ -34,30 +34,24 @@ class TimeLineImpl
     public native static TimeLine create(JavaScriptObject bands, Element divElement) /*-{
         return $wnd.Timeline.create(divElement, bands);
     }-*/;
-    
+
+    public native static void loadXML(String dataUrl, TimelineXMLHandler handler) /*-{
+	    $wnd.Timeline.loadXML(dataUrl, function(xml, url) { handler.@com.gtraffic.gwt.simile.timeline.client.TimelineXMLHandler::onCompletion(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(xml,url) });
+	}-*/;
+
     public native static int getBandCount(TimeLine timeLine) /*-{
         return timeLine.getBandCount();
     }-*/;
     
     public native static void layout(TimeLine timeLine) /*-{
-        try
-        {
-            timeLine.layout();
-        }
-        catch (e)
-        {
-            alert(e.name + "," + e.message);
-        }
+        timeLine.layout();
     }-*/;
 
-    public native static void clearBubbles(TimeLine timeLine) /*-{
-        var count = timeLine.getBandCount();
-        for (var i=0; i<count; i++)
-        {
-            timeLine.getBand(i).closeBubble();
-        }
+    public native static void closeBubble(int index, TimeLine timeLine) /*-{
+        timeLine.getBand(index).closeBubble();
     }-*/;
     
+    // TODO: Mibbe move this into actual rtns
     public native static boolean visible(Element divElement) /*-{
         if (divElement.style.display!='none')
             return true;

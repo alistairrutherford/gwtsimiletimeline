@@ -35,11 +35,6 @@ public class BandInfo extends JavaScriptObject
         return BandInfoImpl.create(options);
     }
     
-    public void closeBubble()
-    {
-        BandInfoImpl.closeBubble(this);
-    }
-    
     public void setSyncWith(int value)
     {
         BandInfoImpl.setSyncWith(this, value);
