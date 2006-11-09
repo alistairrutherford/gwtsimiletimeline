@@ -16,6 +16,8 @@
 
 package com.gtraffic.gwt.simile.timeline.client;
 
+import com.google.gwt.core.client.JavaScriptObject;
+
 /**
  * BandInfoImpl
  * 
@@ -32,12 +34,20 @@ class BandInfoImpl
         return $wnd.Timeline.createBandInfo(options)
     }-*/;
     
+    public native static BandInfo createHotZone(BandOptions options) /*-{
+        return $wnd.Timeline.createHotZoneBandInfo(options)
+    }-*/;
+    
     public native static void setSyncWith(BandInfo band, int index) /*-{
         band.syncWith = index;
     }-*/;
     
     public native static void setHighlight(BandInfo band, boolean value) /*-{
         band.highlight = value;
+    }-*/;
+
+    public native static void setDecorators(BandInfo band, JavaScriptObject value) /*-{
+        band.decorators = value;
     }-*/;
     
 }

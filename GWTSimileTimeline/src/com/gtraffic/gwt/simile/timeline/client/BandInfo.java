@@ -16,6 +16,8 @@
 
 package com.gtraffic.gwt.simile.timeline.client;
 
+import java.util.List;
+
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
@@ -34,6 +36,11 @@ public class BandInfo extends JavaScriptObject
     {
         return BandInfoImpl.create(options);
     }
+
+    public static BandInfo createHotZone(BandOptions options)
+    {
+        return BandInfoImpl.createHotZone(options);
+    }
     
     public void setSyncWith(int value)
     {
@@ -44,5 +51,18 @@ public class BandInfo extends JavaScriptObject
     {
         BandInfoImpl.setHighlight(this, value);
     }
-    
+
+    /**
+     * optional, Set decorator list
+     * 
+     * @param decorators
+     */
+    public void setDecorators(List decorators)
+    {
+    	JavaScriptObject[] decoratorArr = JavaScriptObjectHelper.listToArray(decorators);
+
+        JavaScriptObject jarr = JavaScriptObjectHelper.arrayConvert(decoratorArr);
+
+        BandInfoImpl.setDecorators(this, jarr);
+    }
 }

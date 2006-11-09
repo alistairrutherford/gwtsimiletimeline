@@ -175,5 +175,21 @@ public class BandOptions extends JavaScriptObject
     {
         return JavaScriptObjectHelper.getAttributeAsJavaScriptObject(this, "eventSource");
     }
+
+    /**
+     * optional, set date
+     */
+    public void setDate(String value)
+    {
+        JavaScriptObjectHelper.setAttribute(this, "date", value);
+    }
+
+    /**
+     * optional, set hot zones
+     */
+    public void setZones(HotZoneBandOptions value)
+    {
+        JavaScriptObjectHelper.setAttribute(this, "zones", value);
+    }
     
 }
