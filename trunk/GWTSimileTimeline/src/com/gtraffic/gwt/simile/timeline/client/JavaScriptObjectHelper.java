@@ -16,6 +16,8 @@
 
 package com.gtraffic.gwt.simile.timeline.client;
 
+import java.util.List;
+
 import com.google.gwt.core.client.JavaScriptObject;
 
 
@@ -98,6 +100,7 @@ class JavaScriptObjectHelper
 		return rtn;
 	}
 	
+	
 	public static native int getJavaScriptObjectArraySize(JavaScriptObject elem) /*-{
 		if (elem) return elem.length;
 		return 0;
@@ -116,6 +119,25 @@ class JavaScriptObjectHelper
     	return (ret === undefined) ? null : ret;
     }-*/;
 	
+
+    /**
+     * Helper function to create [] array from List.
+     * 
+     * @param list
+     * 
+     * @return array of objects
+     */
+    public static JavaScriptObject[] listToArray(List list)
+    {
+    	JavaScriptObject[] array = new JavaScriptObject[list.size()];
+
+        for (int i = 0; i < array.length; i++)
+        {
+            array[i] = (JavaScriptObject)list.get(i);
+        }
+
+        return array;
+    }
 	
 	public static JavaScriptObject arrayConvert(Object[] array) 
 	{ 
@@ -137,7 +159,7 @@ class JavaScriptObjectHelper
         } 
         return result; 
 	} 
-		
+
 	private static native JavaScriptObject newJSArray(int length) /*-{ 
 	    if (length < 0) 
 	    { 

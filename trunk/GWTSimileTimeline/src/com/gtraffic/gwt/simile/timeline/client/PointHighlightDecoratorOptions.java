@@ -17,63 +17,64 @@
 package com.gtraffic.gwt.simile.timeline.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
-
-import java.util.List;
 
 
 /**
- * TimeLine
+ * BandOptions
  *
  * @author ajr
  */
-public class TimeLine extends JavaScriptObject
+public class PointHighlightDecoratorOptions extends JavaScriptObject
 {
-    protected TimeLine(int opaque)
+    protected PointHighlightDecoratorOptions(int opaque)
     {
         super(opaque);
     }
 
-    /**
-     * Create TimeLine object
-     */
-    public static TimeLine create(List bands, EventSource source, Element divElement)
+    public static PointHighlightDecoratorOptions create()
     {
-    	JavaScriptObject[] bandArr = JavaScriptObjectHelper.listToArray(bands);
-
-        JavaScriptObject jarr = JavaScriptObjectHelper.arrayConvert(bandArr);
-
-        return TimeLineImpl.create(jarr, divElement);
+        return PointHighlightDecoratorOptionsImpl.create();
     }
-
-
+    
     /**
-     * Redraw timeline 
-     *
-     */
-    public void layout()
-    {
-        TimeLineImpl.layout(this);
-    }
-
-    /**
-     * loadXML through handler function.
+     * required, date
      * 
-     * @param dataUrl
-     * @param handler
+     * @param value
      */
-    public void loadXML(String dataUrl, TimelineXMLHandler handler)
+    public void setDate(String value)
     {
-        TimeLineImpl.loadXML(dataUrl, handler);
+        JavaScriptObjectHelper.setAttribute(this, "date", value);
     }
- 
+
     /**
-     * Close info bubble for indicated band
-     * @param index
+     * required, color
+     * 
+     * @param value
      */
-    public void closeBubble(int index)
+    public void setColor(String value)
     {
-    	TimeLineImpl.closeBubble(index, this);
+        JavaScriptObjectHelper.setAttribute(this, "color", value);
     }
+
+    /**
+     * required, opacity
+     * 
+     * @param value
+     */
+    public void setOpacity(int value)
+    {
+        JavaScriptObjectHelper.setAttribute(this, "opacity", value);
+    }
+
+    /**
+     * required, Band theme
+     * 
+     * @param value
+     */
+    public void setTheme(Theme value)
+    {
+        JavaScriptObjectHelper.setAttribute(this, "theme", value);
+    }
+
     
 }
