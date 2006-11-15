@@ -86,6 +86,31 @@ public class TimeLineWidget extends Widget
         // ---------------------------------------------------------------
         this.renderer = render;
     }
+    
+    /**
+     * Called when the element DIV is attached to the client DOM.
+     */
+    protected void onAttach() 
+    {
+        super.onAttach();
+
+        initialise();
+    }
+    
+    /**
+     * Initialise timeline views
+     * 
+     * Took a while to figure this out but you have to set the widget width _after_
+     * it has been created in order for the timeline creation to work. 
+     *
+     */
+    public void initialise()
+    {
+    	setWidth(Integer.toString(ClientSizeHelper.getClientWidth()) + "px");
+    	setHeight(Integer.toString(ClientSizeHelper.getClientHeight()) + "px");
+    	layout();
+    }
+    
 
     /**
      * Creates timeline, elements have to be setup prior to calling this.

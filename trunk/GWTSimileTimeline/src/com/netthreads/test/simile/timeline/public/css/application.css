@@ -1,9 +1,11 @@
 body {
-  background-color: white;
+  background-color: #E8EEF7;
+  /*background-color: white;*/
   color: black;
   font-family: Arial, sans-serif;
   font-size: smaller;
-  border: 0px; margin: 0px;
+  border: 0px; 
+  margin: 0px;
 }
 
 code {
@@ -104,6 +106,7 @@ a:visited {
 }
 
 .gwt-TabPanel {
+	background-color:#E8EEF7;
 }
 
 .gwt-TabPanelBottom {
@@ -203,11 +206,29 @@ a:visited {
 	background-color:#C3D9FF;
 }
 
-.app-Help {
+/* -------------------------------------------------------------------------- */
+
+.app-Info-Panel {
 	border: 0px;
-	margin: 0px;
+  	margin: 8px;
+    width: 100%;
 	background-color:#E8EEF7;
 }
+
+.app-Info-Label {
+  background-color: #C3D9FF;
+  font-weight: bold;
+  margin-top: 1em;
+  padding: 2px 0px 2px 0px;
+  width: 100%;
+}
+
+.app-Info-Frame {
+	border: 0px;
+	margin: 0px;
+    width: 100%;
+}
+
 
 /* -------------------------------------------------------------------------- */
 

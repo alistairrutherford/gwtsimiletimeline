@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.SourcesTabEvents;
 import com.google.gwt.user.client.ui.TabListener;
 import com.google.gwt.user.client.ui.TabPanel;
 
+import com.netthreads.gwt.simile.timeline.client.ClientSizeHelper;
 import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
 
 
@@ -14,12 +15,15 @@ import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
  * Note: The Timeline view does not like any operation performed upon it unless it is the
  * focussed view. Not sure why not but you will save yourself endless grief if you remember
  * this.
+ * 
+ * Note: The client window sizes returned when each tab is selected are different, hence we 
+ * have to force a resize to the correct view when each tab is selected.
  *
  */
 public class MainTabPanel extends Composite
 {
     private TabPanel panelTabbed = null;
-    private AboutTab tabHelp = null;
+    private AboutTab tabAbout = null;
     private TimeLineTab tabTimeLine = null;
 
     /**
@@ -30,14 +34,13 @@ public class MainTabPanel extends Composite
     {
         panelTabbed = new TabPanel();
 
-        // Addition is backwards from order of display!
-        // Help
+        // Timeline
         tabTimeLine = new TimeLineTab();
-        panelTabbed.add(tabTimeLine, "Timeline", true);
+        panelTabbed.add(tabTimeLine, "Timeline", false);
 
-        // Help
-        tabHelp = new AboutTab();
-        panelTabbed.add(tabHelp, "Help", true);
+        // About
+        tabAbout = new AboutTab();
+        panelTabbed.add(tabAbout, "About", false);
 
         panelTabbed.selectTab(0);
         panelTabbed.setSize("100%", "100%");
@@ -51,7 +54,7 @@ public class MainTabPanel extends Composite
             	
                 public void onTabSelected(SourcesTabEvents sender, int tabIndex)
                 {
-                    widget.layout();
+                	resizeTabs(ClientSizeHelper.getClientWidth(), ClientSizeHelper.getClientHeight());
                 }
 
                 public boolean onBeforeTabSelected(SourcesTabEvents sender, int tabIndex)
@@ -60,6 +63,8 @@ public class MainTabPanel extends Composite
                     return true;
                 }
             });
+        
+        setStyleName("gwt-TabPanel");
     }
 
     /**
@@ -73,7 +78,9 @@ public class MainTabPanel extends Composite
     }
 
     /**
-     * resizeTabs
+     * Resize panel tabs. This is required if the contents of the tabs don't respond to
+     * GWT resize events.
+     * 
      * @param width
      * @param height
      */
@@ -88,7 +95,6 @@ public class MainTabPanel extends Composite
             int viewHeight = height - tabBarOffsetHeight;
 
             tabTimeLine.onWindowResized(viewWidth, viewHeight);
-            tabHelp.onWindowResized(viewWidth, viewHeight);
 
             panelTabbed.setWidth(Integer.toString(width) + "px");
             panelTabbed.setHeight(Integer.toString(height) + "px");
@@ -102,7 +108,7 @@ public class MainTabPanel extends Composite
      */
     public AboutTab getTabHelp()
     {
-        return tabHelp;
+        return tabAbout;
     }
 
     /**

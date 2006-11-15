@@ -20,14 +20,14 @@ public class TimeLineTab extends Composite
     {
     	ITimeLineRender render = new StonehengeRender();
     	
-        simileWidget = new TimeLineWidget("100px", "100px", render);
+        simileWidget = new TimeLineWidget("100%", "100%", render);
 
         initWidget(simileWidget);
 
         // Apply default style
         simileWidget.setStyleName("timeline-default");
     }
-
+    
     /**
      * onWindowResized
      * @param width
