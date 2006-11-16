@@ -17,7 +17,8 @@ import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
 
 
 /**
- * A composite that holds Google Map control
+ * Render timeline
+ * 
  */
 public class StonehengeRender implements ITimeLineRender
 {

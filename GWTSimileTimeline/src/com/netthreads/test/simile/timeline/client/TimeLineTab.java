@@ -1,6 +1,7 @@
 package com.netthreads.test.simile.timeline.client;
 
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.ScrollPanel;
 
 import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
 import com.netthreads.gwt.simile.timeline.client.ITimeLineRender;
@@ -11,6 +12,7 @@ import com.netthreads.gwt.simile.timeline.client.ITimeLineRender;
 public class TimeLineTab extends Composite
 {
     // GUI elements
+    private ScrollPanel panel = null;
     private TimeLineWidget simileWidget = null;
 
     /**
@@ -18,11 +20,16 @@ public class TimeLineTab extends Composite
      */
     public TimeLineTab()
     {
-    	ITimeLineRender render = new StonehengeRender();
-    	
+        panel = new ScrollPanel();
+
+        ITimeLineRender render = new StonehengeRender();
         simileWidget = new TimeLineWidget("100%", "100%", render);
 
-        initWidget(simileWidget);
+        panel.add(simileWidget);
+        
+        panel.setAlwaysShowScrollBars(false);
+
+        initWidget(panel);
 
         // Apply default style
         simileWidget.setStyleName("timeline-default");
@@ -39,7 +46,8 @@ public class TimeLineTab extends Composite
     }
 
     /**
-     * resizeMap
+     * Resize view elements
+     * 
      * @param width
      * @param height
      */
@@ -47,6 +55,10 @@ public class TimeLineTab extends Composite
     {
         if ((width > 0) && (height > 0))
         {
+        	
+            panel.setWidth(Integer.toString(width) + "px");
+            panel.setHeight(Integer.toString(height) + "px");
+            
             simileWidget.setWidth(Integer.toString(width) + "px");
             simileWidget.setHeight(Integer.toString(height) + "px");
             

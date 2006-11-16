@@ -59,7 +59,7 @@ public class MainTabPanel extends Composite
 
                 public boolean onBeforeTabSelected(SourcesTabEvents sender, int tabIndex)
                 {
-                    widget.clear();
+                    widget.clearBubbles();
                     return true;
                 }
             });
@@ -78,8 +78,7 @@ public class MainTabPanel extends Composite
     }
 
     /**
-     * Resize panel tabs. This is required if the contents of the tabs don't respond to
-     * GWT resize events.
+     * Resize view elements
      * 
      * @param width
      * @param height

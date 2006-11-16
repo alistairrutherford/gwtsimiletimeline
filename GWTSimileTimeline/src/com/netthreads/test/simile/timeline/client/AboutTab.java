@@ -50,6 +50,12 @@ public class AboutTab extends Composite
 	}
 
 
+    /**
+     * Make title label
+     * 
+     * @param caption for label
+     * @return created label
+     */
     private HTML makeLabel(String caption)
     {
         HTML html = new HTML(caption);
@@ -61,8 +67,9 @@ public class AboutTab extends Composite
     /**
      * Make frame for panel. Note workaround code to supess frame border and
      * scrollbar.
-     * @param url
-     * @return
+     * 
+     * @param url of target html
+     * @return created Frame
      */
     private Frame makeFrame(String url)
     {
