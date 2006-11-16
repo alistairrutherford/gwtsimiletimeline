@@ -144,6 +144,7 @@ public class TimeLineWidget extends Widget
 
     /**
      * Repaint widget
+     * 
      */
     public void layout()
     {
@@ -157,7 +158,7 @@ public class TimeLineWidget extends Widget
      * Clear display artifacts.
      *
      */
-    public void clear()
+    public void clearBubbles()
     {
         if (visible())
         {
@@ -168,8 +169,14 @@ public class TimeLineWidget extends Widget
                 timeline.closeBubble(count);
             }
         }
+        
     }
 
+    public void clearData()
+    {
+        eventSource.clear();
+    }
+    
     /**
      * Load data into widget through handler.
      *
@@ -207,14 +214,23 @@ public class TimeLineWidget extends Widget
     }
 
     /**
-     * Returns whether the timeline view is visible or not. Operations on the timeline
-     * will throw an exception unless it is visible.
+     * Is timeline visible within containing view
      *
      * @return visible status
      */
     public boolean visible()
     {
-        return TimeLineImpl.visible(divElement);
+    	/**
+        * There might be an issue around this to do with how many views the widget is embedded down
+        * into. This will examine the visibility of the client div and the parent but if you were
+        * to put a parent view inside yet another view and stick that inside a tab, you might get
+        * into trouble. 
+        * */
+    	Element element = getElement();
+        if (getParent() != this)
+        	element = getParent().getElement();
+    	
+        return TimeLineImpl.visible(element);
     }
 
     public EventSource getEventSource()
