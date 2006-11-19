@@ -17,6 +17,7 @@ package com.netthreads.gwt.simile.timeline.client;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class TimeLineWidget extends Widget
     private ArrayList bandInfos = null;
     private ArrayList bandHotZones = null;
     private ArrayList bandDecorators = null;
-    private TimeLine timeline = null;
+    private TimeLine timeLine = null;
     private Element divElement = null;
     private ITimeLineRender renderer = null;
 
@@ -94,7 +95,7 @@ public class TimeLineWidget extends Widget
     {
         super.onAttach();
 
-        initialise();
+        if (timeLine==null) initialise();
     }
     
     /**
@@ -108,7 +109,7 @@ public class TimeLineWidget extends Widget
     {
     	setWidth(Integer.toString(ClientSizeHelper.getClientWidth()) + "px");
     	setHeight(Integer.toString(ClientSizeHelper.getClientHeight()) + "px");
-    	layout();
+    	create();
     }
     
 
@@ -116,19 +117,17 @@ public class TimeLineWidget extends Widget
      * Creates timeline, elements have to be setup prior to calling this.
      *
      */
-    public TimeLine create()
+    public void create()
     {
         // ---------------------------------------------------------------
         // Render timeline into this widget
         // ---------------------------------------------------------------
     	renderer.render(this);
-    	
+
         // ---------------------------------------------------------------
         // Timeline
         // ---------------------------------------------------------------
-        TimeLine timeLine = TimeLine.create(bandInfos, eventSource, divElement);
-
-        return timeLine;
+        timeLine = TimeLine.create(bandInfos, eventSource, divElement, getClientElement());
     }
 
     /**
@@ -166,7 +165,7 @@ public class TimeLineWidget extends Widget
 
             while (--count > 0)
             {
-                timeline.closeBubble(count);
+            	timeLine.closeBubble(count);
             }
         }
         
@@ -185,7 +184,7 @@ public class TimeLineWidget extends Widget
      */
     public void load(String dataUrl, TimelineXMLHandler handler)
     {
-        timeline.loadXML(dataUrl, handler);
+    	timeLine.loadXML(dataUrl, handler);
     }
 
     /**
@@ -196,21 +195,6 @@ public class TimeLineWidget extends Widget
     public void load(String dataUrl)
     {
         eventSource.loadXML(dataUrl);
-    }
-
-    /**
-     * Get timeline instance
-     *
-     * @return
-     */
-    public TimeLine getTimeLine()
-    {
-        if (timeline == null)
-        {
-            timeline = create();
-        }
-
-        return timeline;
     }
 
     /**
@@ -226,11 +210,33 @@ public class TimeLineWidget extends Widget
         * to put a parent view inside yet another view and stick that inside a tab, you might get
         * into trouble. 
         * */
+    	Element clientElement = getClientElement();
+    	Element containerElement = getElement();
+    	
+    	boolean client = UIObject.isVisible(clientElement);
+    	boolean container = UIObject.isVisible(containerElement);
+    	
+        return (client&&container);
+    }
+
+    /**
+     * Get client div element reference.
+     * 
+     * @return element ref
+     */
+    private Element getClientElement()
+    {
     	Element element = getElement();
         if (getParent() != this)
         	element = getParent().getElement();
-    	
-        return TimeLineImpl.visible(element);
+        
+        return (element);
+    }
+
+    
+    public TimeLine getTimeLine()
+    {
+        return timeLine;
     }
 
     public EventSource getEventSource()

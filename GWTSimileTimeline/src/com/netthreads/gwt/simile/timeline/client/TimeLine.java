@@ -18,6 +18,7 @@ package com.netthreads.gwt.simile.timeline.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.UIObject;
 
 import java.util.List;
 
@@ -37,14 +38,23 @@ public class TimeLine extends JavaScriptObject
     /**
      * Create TimeLine object
      */
-    public static TimeLine create(List bands, EventSource source, Element divElement)
+    public static TimeLine create(List bands, EventSource source, Element divElement, Element clientElement)
     {
     	JavaScriptObject[] bandArr = JavaScriptObjectHelper.listToArray(bands);
 
         JavaScriptObject jarr = JavaScriptObjectHelper.arrayConvert(bandArr);
 
-        return TimeLineImpl.create(jarr, divElement);
+        boolean currVisible = UIObject.isVisible(clientElement);
+        UIObject.setVisible(clientElement, true);
+        
+        TimeLine timeLine = TimeLineImpl.create(jarr, divElement);
+
+        UIObject.setVisible(clientElement, currVisible);
+        
+        return timeLine;
+    	
     }
+    
 
 
     /**
