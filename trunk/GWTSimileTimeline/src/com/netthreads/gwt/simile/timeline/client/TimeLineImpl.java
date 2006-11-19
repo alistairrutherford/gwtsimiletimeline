@@ -51,13 +51,4 @@ class TimeLineImpl
         timeLine.getBand(index).closeBubble();
     }-*/;
     
-    // TODO: Mibbe move this into actual rtns
-    public native static boolean visible(Element divElement) /*-{
-        if (divElement.style.display!='none')
-            return true;
-        else
-            return false;
-    }-*/;
-
-    
 }
