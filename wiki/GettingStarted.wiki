@@ -24,12 +24,16 @@ I *strongly* recommend you get the complete project and open the test applicatio
 
 *2)* I will come to how to download the javascript for the timeline later but to get you started you must add the js include into your main html application file i.e.
 
-{{{<script src="http://simile.mit.edu/timeline/api/timeline-api.js" type="text/javascript"></script>}}}
+{{{
+<script src="http://simile.mit.edu/timeline/api/timeline-api.js" type="text/javascript"></script>
+}}}
 
 
 *3)* In your application xml file you will have to add the lines:
 
-{{{<inherits name='com.netthreads.gwt.simile.timeline.Timeline' />}}}
+{{{
+<inherits name='com.netthreads.gwt.simile.timeline.Timeline' />
+}}}
 
 
 *4)* You can use the timeline widget just like any other GWT widget.
@@ -38,15 +42,19 @@ Each timeline object has to have an associated timeline renderer. The renderer i
 
 To create a widget is easy, e.g. using the StonehengeRender object.
 
-{{{TimeLineWidget simileWidget = new TimeLineWidget("100%", "100%", new StonehengeRender());}}}
+{{{
+TimeLineWidget simileWidget = new TimeLineWidget("100%", "100%", new StonehengeRender());
+}}}
 
 You can add this into a panel or composite widget in the same fashion as any other GWT widget.
 
 
 *5)* There are two mechanisms to load the timeline data. The first is a straight load from a url i.e.
 
-{{{String myData = "site/data/stonehenge.xml";
-simileWidget.load(myData);}}}
+{{{
+String myData = "site/data/stonehenge.xml";
+simileWidget.load(myData);
+}}}
 
 This implements the ajax call in the underlying javascript code.
 
@@ -54,14 +62,18 @@ The second is through the use of a callback function. To use this you must imple
 
 To call:
 
-{{{TimeLineWidget.load(url, handler);}}}
+{{{
+TimeLineWidget.load(url, handler);
+}}}
 
 Where ‘handler’ is the class which implements the interface. The callback function is..
 
-{{{public void onCompletion(JavaScriptObject xml, String url)
+{{{
+public void onCompletion(JavaScriptObject xml, String url)
 {
 simileWidget.getEventSource().load(xml, url);
-}}}}
+}
+}}}
 
 The url passed through the callback is the same as the one passed to the load function and seems to be required by the timeline to set a working directory base (go look at the javascript code). You can use the callback to intercept the xml data, open and close ‘loading popups’.
 
@@ -85,4 +97,3 @@ In your main html application file replace the js include mentioned in step (2) 
 type="text/javascript"></script>
 
 If you use the timeline in a GWT app then I would love to hear from you. For specific questions you are best off posting a question to the Google Web Toolkit forum or email me (see About page)
-
