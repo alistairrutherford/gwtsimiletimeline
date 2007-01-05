@@ -11,7 +11,8 @@ This describes the answers to a few commonly asked questions.
 
 In a tabbed panel where one (or more) of the tabs contains a timeline you must make sure that when another tab is selected any open infobubbles are closed. If you don’t they will just stay there and look bad. To avoid looking like a noob add an event handler to catch the tab switching and close any open bubbles.
 
-_panelTabbed.addTabListener(new TabListener()
+{{{
+panelTabbed.addTabListener(new TabListener()
 {
 TimeLineWidget widget = tabTimeLine.getTimeLineWidget();
 
@@ -25,7 +26,8 @@ public boolean onBeforeTabSelected(SourcesTabEvents sender, int tabIndex)
 widget.clearBubbles();
 return true;
 }
-});_
+});
+}}}
 
 This is in the sample application..
 
@@ -33,7 +35,9 @@ This is in the sample application..
 
 Want to have multiple datasets but use the same timeline control? Simply call the widget clearData call i.e.
 
-_widget.clearData();_
+{{{
+widget.clearData();
+}}}
 
 *- Calling back into your application from the timeline.*
 
@@ -41,9 +45,12 @@ if you examine gTraffic you will see that it is possible to click on an infobubb
 
 I implement a function in my map data handler like so
 
-_private native void initJavaScriptFunctions(MapDataHandler context) /*-{
+{{{
+private native void initJavaScriptFunctions(MapDataHandler context) /*-{
 $wnd.selectMarker = function (id) {
 context.@com.gtraffic.client.MapDataHandler::selectMarker(Ljava/lang/String;)(id) };
-}-*/;_
+}-*/;
+}}}
 
 This defines a javascript function ’selectMarker’ which is called directly from a link on the infobubble. I have assigned a unique id to each of the markers on the currently displayed dataset. The infobubble link calls this function which in turn calls a method of MapDataHandler confusingly also called ’selectMarker’ which takes the id and opens an info window. 
+
