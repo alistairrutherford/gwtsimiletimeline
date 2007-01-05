@@ -9,7 +9,7 @@ This describes the answers to a few commonly asked questions.
 
 *- Clearing infobubble in tabbed panel*
 
-In a tabbed panel where one (or more) of the tabs contains a timeline you must make sure that when another tab is selected any open infobubbles are closed. If you don’t they will just stay there and look bad. To avoid looking like a noob add an event handler to catch the tab switching and close any open bubbles.
+In a tabbed panel where one (or more) of the tabs contains a timeline you must make sure that when another tab is selected any open infobubbles are closed. If you don’t they will just stay there and look bad. To avoid this add an event handler to catch the tab switching and close any open bubbles.
 
 {{{
 panelTabbed.addTabListener(new TabListener()
@@ -53,4 +53,3 @@ context.@com.gtraffic.client.MapDataHandler::selectMarker(Ljava/lang/String;)(id
 }}}
 
 This defines a javascript function ’selectMarker’ which is called directly from a link on the infobubble. I have assigned a unique id to each of the markers on the currently displayed dataset. The infobubble link calls this function which in turn calls a method of MapDataHandler confusingly also called ’selectMarker’ which takes the id and opens an info window. 
-
