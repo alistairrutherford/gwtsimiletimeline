@@ -1,0 +1,38 @@
+Fixes and Workarounds This describes fixes and workarounds for existing issues.
+
+= Introduction =
+
+To avoid distributing a modified version of the core javascript this section describes fixes and workarounds for problems which can't be fixed in the core library.
+
+
+= Details =
+
+*- Changing data cached by browser*
+
+If you have xml data which changes constantly but the filename remains the same you will find under IE that the data is cached and that you do not get changes reflected on each load. There is a workaround but it has has not been tested so I can’t guarantee it will work (yet anyway). In the timeline.js code change the loadXML function to force a reload by setting the datetime to an old value in the http request header:
+
+{{{
+Timeline.loadXML = function(url, f) {
+var fError = function(statusText, status, xmlhttp) {
+alert("Failed to load data xml from " + url + "\n" +
+statusText);
+};
+var fDone = function(xmlhttp) {
+var xml = xmlhttp.responseXML;
+if (!xml.documentElement && xmlhttp.responseStream) {
+xml.load(xmlhttp.responseStream);
+}
+f(xml, url);
+};
+
+// **ADDED
+Timeline.XmlHttp.setRequestHeader( "If-Modified-Since", "Sat, 1 Jan
+2000 00:00:00 GMT" );
+// **ADDED
+
+Timeline.XmlHttp.get(url, fError, fDone);
+
+}; 
+}}}
+
+
