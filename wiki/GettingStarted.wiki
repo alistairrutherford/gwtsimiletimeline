@@ -1,4 +1,4 @@
-#Getting Started Step by step guide to using the timeline in your GWT application.
+Step by step guide to using the timeline in your GWT application.
 
 = Introduction =
 
@@ -84,6 +84,5 @@ In your main html application file replace the js include mentioned in step (2) 
 type="text/javascript"></script>
 
 If you use the timeline in a GWT app then I would love to hear from you. For specific questions you are best off posting a question to the Google Web Toolkit forum or email me (see About page)
-
 
 
