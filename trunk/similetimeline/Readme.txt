@@ -2,9 +2,9 @@ In order to compile and run the source code from within Eclipse you will have to
 classpath variable GWT_HOME. This must point at the directory where the GWT jars reside. 
 E.g on my computer I place the GWT files in:
 
-C:/Development/website/gwt/gwt-windows-1.3.3
+C:\Development\website\gwt\sdk\gwt-windows-1.4.61
 
-So my GWT_HOME=C:/Development/website/gwt/gwt-windows-1.3.3
+So my GWT_HOME=C:/Development/website/gwt/sdk/gwt-windows-1.4.61
 
 Pain in the arse, right? Trust me, you will thank me for this later when you have lots of 
 GWT apps and you need to updgrade the toolkit version :)
