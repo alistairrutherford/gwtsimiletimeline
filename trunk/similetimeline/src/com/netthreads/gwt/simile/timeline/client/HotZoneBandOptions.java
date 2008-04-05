@@ -26,9 +26,9 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class HotZoneBandOptions extends JavaScriptObject
 {
-    protected HotZoneBandOptions(int opaque)
+    protected HotZoneBandOptions()
     {
-        super(opaque);
+        super();
     }
 
     public static HotZoneBandOptions create()

@@ -26,9 +26,9 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class SpanHighlightDecorator extends JavaScriptObject
 {
-    protected SpanHighlightDecorator(int opaque)
+    protected SpanHighlightDecorator()
     {
-        super(opaque);
+        super();
     }
 
     public static SpanHighlightDecorator create(SpanHighlightDecoratorOptions options)

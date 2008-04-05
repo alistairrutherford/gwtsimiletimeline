@@ -30,9 +30,9 @@ import java.util.List;
  */
 public class TimeLine extends JavaScriptObject
 {
-    protected TimeLine(int opaque)
+    protected TimeLine()
     {
-        super(opaque);
+        super();
     }
 
     /**

@@ -75,8 +75,8 @@ public class AboutTab extends Composite
     {
         Frame frame = new Frame(url);
         frame.setStyleName("app-Info-Frame");
-        DOM.setIntAttribute(frame.getElement(), "frameBorder", 0); // disable border
-        DOM.setAttribute(frame.getElement(), "scrolling", "no"); // disable scroll
+        DOM.setElementPropertyInt(frame.getElement(), "frameBorder", 0); // disable border
+        DOM.setElementProperty(frame.getElement(), "scrolling", "no"); // disable scroll
         
         return frame;
     }

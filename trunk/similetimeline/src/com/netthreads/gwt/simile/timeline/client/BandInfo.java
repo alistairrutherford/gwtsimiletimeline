@@ -27,9 +27,9 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class BandInfo extends JavaScriptObject
 {
-    protected BandInfo(int opaque)
+    protected BandInfo()
     {
-        super(opaque);
+        super();
     }
     
     public static BandInfo create(BandOptions options)

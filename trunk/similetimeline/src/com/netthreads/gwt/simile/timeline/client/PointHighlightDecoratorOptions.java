@@ -26,9 +26,9 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class PointHighlightDecoratorOptions extends JavaScriptObject
 {
-    protected PointHighlightDecoratorOptions(int opaque)
+    protected PointHighlightDecoratorOptions()
     {
-        super(opaque);
+        super();
     }
 
     public static PointHighlightDecoratorOptions create()
