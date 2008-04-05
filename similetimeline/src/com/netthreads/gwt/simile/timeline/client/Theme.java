@@ -25,9 +25,9 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public class Theme extends JavaScriptObject
 {
-    protected Theme(int opaque)
+    protected Theme()
     {
-        super(opaque);
+        super();
     }
     
     public static Theme create()

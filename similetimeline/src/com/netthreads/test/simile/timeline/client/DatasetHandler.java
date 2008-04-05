@@ -146,6 +146,6 @@ class DatasetHandler implements TimelineXMLHandler
         TimeLineWidget tline = TimeLineTest.getMainPanel().getTabTimeLine().getTimeLineWidget();
         
         CommandLoadDataset command = new CommandLoadDataset(this, tline, url);
-        DeferredCommand.add(command);
+        DeferredCommand.addCommand(command);
     }
 }
