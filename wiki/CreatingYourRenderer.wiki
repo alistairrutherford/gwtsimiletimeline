@@ -6,10 +6,18 @@ The purpose of this page is to go over what you need to do to create a basic app
 
 = Details =
 
-1. 
+0. This tutorial was written with the following facts in mind:  
 
+Tools: GWT 1.5, Eclipse 3.3 Winter Europa.
+You have Stonehenge up and running
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+1. import com.netthreads.gwt.simile.timeline.client.ITimeLineRender;
+import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
+
+public class TimelineRendererTutorial implements ITimeLineRender {
+
+	public void render(TimeLineWidget widget) {
+		// TODO Auto-generated method stub
+	}
+
+}
