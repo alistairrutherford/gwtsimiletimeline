@@ -11,7 +11,9 @@ The purpose of this page is to go over what you need to do to create a basic app
 Tools: GWT 1.5, Eclipse 3.3 Winter Europa.
 You have Stonehenge up and running
 
-1. import com.netthreads.gwt.simile.timeline.client.ITimeLineRender;
+1. We are going to create this class and then implement this interface for ITimeLineRenderer.
+
+import com.netthreads.gwt.simile.timeline.client.ITimeLineRender;
 import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
 
 public class TimelineRendererTutorial implements ITimeLineRender {
@@ -21,3 +23,7 @@ public class TimelineRendererTutorial implements ITimeLineRender {
 	}
 
 }
+
+2.  You may want resize your application:  You will drive yourself crazy if you try to 
+change the size of the TimelineRendererTutorial object.  Instead, you must change the size of the widget inside the TimelineRendererTutorial class.  For our case, we are going to se t this size to:  widget.setPixelSize(200,200);
+
