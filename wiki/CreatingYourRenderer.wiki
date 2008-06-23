@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary This page will help you make your first gwt similie timeline
 
 = Introduction =
 
@@ -26,4 +26,3 @@ public class TimelineRendererTutorial implements ITimeLineRender {
 
 2.  You may want resize your application:  You will drive yourself crazy if you try to 
 change the size of the TimelineRendererTutorial object.  Instead, you must change the size of the widget inside the TimelineRendererTutorial class.  For our case, we are going to se t this size to:  widget.setPixelSize(200,200);
-
