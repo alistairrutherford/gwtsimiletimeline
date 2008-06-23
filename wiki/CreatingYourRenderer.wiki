@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+The purpose of this page is to go over what you need to do to create a basic application using gwtsilimietimeline.  What we are basically going to do is to take a skeleton of the Stonehenge renderer and build our own.   This is not meant to be a detailed, feature rich explanation.
+
+= Details =
+
+1. 
+
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
