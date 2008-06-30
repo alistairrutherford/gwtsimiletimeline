@@ -41,7 +41,7 @@ public class PointHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setDate(String value)
+    public final void setDate(String value)
     {
         JavaScriptObjectHelper.setAttribute(this, "date", value);
     }
@@ -51,7 +51,7 @@ public class PointHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setColor(String value)
+    public final void setColor(String value)
     {
         JavaScriptObjectHelper.setAttribute(this, "color", value);
     }
@@ -61,7 +61,7 @@ public class PointHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setOpacity(int value)
+    public final void setOpacity(int value)
     {
         JavaScriptObjectHelper.setAttribute(this, "opacity", value);
     }
@@ -71,7 +71,7 @@ public class PointHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setTheme(Theme value)
+    public final void setTheme(Theme value)
     {
         JavaScriptObjectHelper.setAttribute(this, "theme", value);
     }

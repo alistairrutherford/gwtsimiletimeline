@@ -41,7 +41,7 @@ public class SpanHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setStartDate(String value)
+    public final void setStartDate(String value)
     {
         JavaScriptObjectHelper.setAttribute(this, "startDate", value);
     }
@@ -51,7 +51,7 @@ public class SpanHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setEndDate(String value)
+    public final void setEndDate(String value)
     {
         JavaScriptObjectHelper.setAttribute(this, "endDate", value);
     }
@@ -61,7 +61,7 @@ public class SpanHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setColor(String value)
+    public final void setColor(String value)
     {
         JavaScriptObjectHelper.setAttribute(this, "color", value);
     }
@@ -71,7 +71,7 @@ public class SpanHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setOpacity(int value)
+    public final void setOpacity(int value)
     {
         JavaScriptObjectHelper.setAttribute(this, "opacity", value);
     }
@@ -81,7 +81,7 @@ public class SpanHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setStartLabel(String value)
+    public final void setStartLabel(String value)
     {
         JavaScriptObjectHelper.setAttribute(this, "startLabel", value);
     }
@@ -91,7 +91,7 @@ public class SpanHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setEndLabel(String value)
+    public final void setEndLabel(String value)
     {
         JavaScriptObjectHelper.setAttribute(this, "endLabel", value);
     }
@@ -101,7 +101,7 @@ public class SpanHighlightDecoratorOptions extends JavaScriptObject
      * 
      * @param value
      */
-    public void setTheme(Theme value)
+    public final void setTheme(Theme value)
     {
         JavaScriptObjectHelper.setAttribute(this, "theme", value);
     }
