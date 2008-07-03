@@ -46,7 +46,7 @@ To create a widget is easy, e.g. using the StonehengeRender object.
 TimeLineWidget simileWidget = new TimeLineWidget("100%", "100%", new StonehengeRender());
 }}}
 
-     _{{{Note, if you do this, then you need to inherit the TimeLineTest.gwt.xml module.}}}_
+     _Note, if you do this, then you need to inherit the test module by adding:_ {{{<inherits name='com.netthreads.test.simile.timeline.TimeLineTest' />.}}}
 
 You can add this into a panel or composite widget in the same fashion as any other GWT widget.
 
