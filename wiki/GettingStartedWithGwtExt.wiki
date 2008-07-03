@@ -100,9 +100,9 @@ pull out the following directory
 com\netthreads\test\simile\timeline\public and copy the follwing folders into your 
 public directory:
 
-  *css
-  *help
-  *site
+  * css
+  * help
+  * site
 
 === Step 6 ===
 Link ext to your code by placing this at the bottom of your module.  
