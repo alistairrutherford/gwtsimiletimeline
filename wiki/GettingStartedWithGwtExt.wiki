@@ -85,14 +85,14 @@ com\netthreads\test\simile\timeline\public
 Copy js and paste this into your public folder.  
 
 Since the bundled resource do not include ext, you need to copy the following components of EXT 2.0.2 in your path.    From ext, pull out the following pieces of code and place them in your public js/api/ext folder: 
-
+{{{
 ./resources
 ./adapter
 ext-all.js
 ext-all-debug.js
 ext-core.js
 ext-core-debug.js
-
+}}}
 === Step 5 === 
 Setting up Data for Test Reading
 
@@ -179,5 +179,3 @@ public class Test implements EntryPoint {
 }
 
 }}}
-
-
