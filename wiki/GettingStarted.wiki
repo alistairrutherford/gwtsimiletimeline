@@ -46,7 +46,7 @@ To create a widget is easy, e.g. using the StonehengeRender object.
 TimeLineWidget simileWidget = new TimeLineWidget("100%", "100%", new StonehengeRender());
 }}}
 
-     _Note, if you do this, then you need to inherit the TimeLineTest.gwt.xml module._
+     _{{{Note, if you do this, then you need to inherit the TimeLineTest.gwt.xml module.}}}_
 
 You can add this into a panel or composite widget in the same fashion as any other GWT widget.
 
@@ -94,6 +94,7 @@ and get the whole lot. Stick this under your public project folder e.g
     \src\com\netthreads\test\simile\timeline\public\js\simile
 
 In your main html application file replace the js include mentioned in step (2) with
+
 
 <script src="js/simile/timeline-api.js"
 type="text/javascript"></script>
