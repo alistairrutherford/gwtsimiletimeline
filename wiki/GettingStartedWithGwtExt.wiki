@@ -1,7 +1,7 @@
 #summary This page is dedicated to building a quick project with GWT-EXT and the similietimeline.
 
 = Introduction =
-This page was created because I wanted to document exactly what you needed to do to get this timeline up and running with using GWT-EXT.  
+This page was created because I wanted to document exactly what you needed to do to get this timeline up and running with using GWT-EXT.  The code for this demo can be found in the download section.  
 
 
 = Details =
