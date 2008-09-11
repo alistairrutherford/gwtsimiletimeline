@@ -50,4 +50,7 @@ class BandInfoImpl
         band.decorators = value;
     }-*/;
     
+    public native static void setCenterVisibleDate(BandInfo band, String date)/*-{
+    	band.setCenterVisibleDate(date);
+    }-*/;
 }

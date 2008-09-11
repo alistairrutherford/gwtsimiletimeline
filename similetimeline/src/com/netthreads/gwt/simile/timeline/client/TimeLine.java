@@ -86,4 +86,15 @@ public class TimeLine extends JavaScriptObject
     	TimeLineImpl.closeBubble(index, this);
     }
     
+    /**
+     *  Accessor function for date setting..
+     *  Will flesh out later
+     *  
+     *  currently use BandOptions.setDate for functionality...
+     *  Hooks for that are in ITimeLineRender interface
+     *  
+     */
+    public final void centerOnEvent(){
+    	
+    }
 }

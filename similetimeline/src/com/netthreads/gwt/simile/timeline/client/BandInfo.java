@@ -65,4 +65,8 @@ public class BandInfo extends JavaScriptObject
 
         BandInfoImpl.setDecorators(this, jarr);
     }
+    
+    public final void centerData(String date){
+    	BandInfoImpl.setCenterVisibleDate(this, date);
+    }
 }

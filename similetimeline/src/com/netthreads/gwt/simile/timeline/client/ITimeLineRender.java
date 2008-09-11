@@ -19,4 +19,13 @@ package com.netthreads.gwt.simile.timeline.client;
 public interface ITimeLineRender
 {
 	public void render(TimeLineWidget widget);
+	/**
+	 * Function to set Center data of all bands
+	 * @param widget- timeline widget to set
+	 * @param date- string representation of date. Tested so far with "YYYY Mon DD" format only
+	 * 
+	 * Note- in current implementation, this iterates the BandInfos that the widget holds, and calls the setDate function on each, passing
+	 * in the string date..
+	 */
+	public void centerData(TimeLineWidget widget,String date);
 }

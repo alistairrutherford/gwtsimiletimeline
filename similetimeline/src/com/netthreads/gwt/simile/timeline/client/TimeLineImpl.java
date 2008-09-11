@@ -31,12 +31,15 @@ class TimeLineImpl
     // Timeline
     // -------------------------------------------------------------------
 
+	//private static TimeLineClickListener listener;
+	
+	
     public native static TimeLine create(JavaScriptObject bands, Element divElement) /*-{
         return $wnd.Timeline.create(divElement, bands);
     }-*/;
 
     public native static void loadXML(String dataUrl, TimelineXMLHandler handler) /*-{
-	    $wnd.Timeline.loadXML(dataUrl, function(xml, url) { handler.@com.netthreads.gwt.simile.timeline.client.TimelineXMLHandler::onCompletion(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(xml,url) });
+	    $wnd.Timeline.loadXML(dataUrl, function(xml, url) { handler.@com.agentlogic.services.sphere.ozone.client.timeline.TimelineXMLHandler::onCompletion(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;)(xml,url) });
 	}-*/;
 
     public native static int getBandCount(TimeLine timeLine) /*-{
@@ -50,5 +53,21 @@ class TimeLineImpl
     public native static void closeBubble(int index, TimeLine timeLine) /*-{
         timeLine.getBand(index).closeBubble();
     }-*/;
-    
+/*    public static void setClickListener(TimeLineClickListener _listener){
+    	useClickListener();    	
+    	listener = _listener;
+    }
+    public static void clickCallback(int x,int y,String description){
+    	System.out.println("Click "+x+" "+y+" "+description);
+    	if(listener != null){
+    		listener.onClick(x, y, description);
+    	}
+    }	    
+    public native static void useClickListener()-{    	
+    	$wnd.Timeline.DurationEventPainter.prototype._showBubble = function(x, y, evt) {
+    		  //alert (evt.getDescription ()+" 2");    		  
+    		  @com.netthreads.gwt.simile.timeline.client.TimeLineImpl::clickCallback(IILjava/lang/String;)(x,y,evt.getDescription());
+    		  //alert("past");
+    	}
+    }-;*/
 }
