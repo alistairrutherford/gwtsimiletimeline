@@ -28,7 +28,7 @@ class ThemeImpl
     // Theme
     // -------------------------------------------------------------------
     
-    public native static Theme create() /*-{
+    public native static Theme create()/*-{
         var theme = $wnd.Timeline.ClassicTheme.create();
         theme.event.label.width = 400; // default px 
         return theme;

@@ -86,6 +86,7 @@ public class TimeLineWidget extends Widget
         // Set timeline render
         // ---------------------------------------------------------------
         this.renderer = render;
+        
     }
     
     /**
@@ -195,6 +196,14 @@ public class TimeLineWidget extends Widget
     public void load(String dataUrl)
     {
         eventSource.loadXML(dataUrl);
+        
+        createEvent("Joker Spotted", "Jan 23 2009 00:00:00 GMT", "Feb 23 2009 00:00:00 GMT", true, null, null, "Oh, MY! The Joker is running madly about!!!!");
+        createEvent("Doughnuts bought", "Jun 23 2007 08:00:00 GMT", "Jun 23 2007 08:00:00 GMT", false, null, null, "Who wanted the Cruelers??");
+   /*     StringBuffer myBuff=new StringBuffer();
+        myBuff.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        myBuff.append("<data>");
+        myBuff.append("<event start=\"Jun 23 2009 00:00:00 GMT\" end=\"Jun 24 2009 12:00:00 GMT\" isDuration=\"true\" title=\"Joker Spotted\" icon=\"timelineData/images/icons/green-circle.png\" image=\"images/batman.jpg\"> Joker Alert</event></data>");
+        eventSource.loadXMLText(myBuff.toString());*/
     }
 
     /**
@@ -262,5 +271,50 @@ public class TimeLineWidget extends Widget
 	public Theme getTheme() 
 	{
 		return theme;
+	}
+/**
+ * Event creation from parameters- takes in much data to process..
+ * NOTE: you must have the util/timeline-helper.js file included in the module to operate this
+ * 
+ * @param title-Title for the event	
+ * @param start- start time for the event- as a GMT String
+ * @param end- end time for event- as string. NOTE: For non-duration events, you must insure that start =end
+ * @param isDur Duration event?
+ * @param icon- icon to use for this event
+ * @param image- image to use for this event
+ * @param body- html body of this event to display when user selects event
+ */
+	public void createEvent(String title, String start, String end, boolean isDur, String icon, String image, String body){
+		StringBuffer myBuff=new StringBuffer();
+        myBuff.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        myBuff.append("<data><event ");
+        myBuff.append("start=\" "+start+"\" ");
+        myBuff.append("end=\" "+end+"\" ");
+        myBuff.append(" isDuration=\""+Boolean.toString(isDur)+"\" ");
+        myBuff.append("title=\""+title+"\" ");
+        if(icon!=null)
+        	myBuff.append("icon=\""+icon+"\"");
+        if(image!=null)
+        	myBuff.append("image=\""+image+"\"");
+        myBuff.append(">");
+        myBuff.append(body);
+        myBuff.append("</event></data>");		
+        eventSource.loadXMLText(myBuff.toString());
+	}
+	
+	/**
+	 *  Event creation from xml text- similar to the author's example
+	 *  NOTE: you must have the util/timeline-helper.js file included in the module to operate this
+	 *  
+	 * @param xmlText- XML text in the author's format
+	 * 
+	 * 
+	 */
+	public void createEvent(String xmlText){
+		eventSource.loadXMLText(xmlText);
+	}
+	
+	public void centerData(String date){
+		this.renderer.centerData(this,date);
 	}
 }
