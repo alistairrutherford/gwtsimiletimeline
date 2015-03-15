@@ -1,0 +1,115 @@
+Step by step guide to using the timeline in your GWT application.
+
+# Introduction #
+
+From the Simile page “Timeline is a DHTML-based AJAXy widget for visualizing time-based events. It is like Google Maps for time-based information. ”
+
+The GWT Simile Timeline API was written to provide integration of the timeline into GWT apps. The API is currently complete for the latest version (5748).
+
+# Details #
+
+**Getting Started**
+
+**1)** If you just want to use the JAR and don’t want to examine the code the you can get the latest released jar from the subversion repository here.
+
+Obviously you will need to include this jar into your classpath for building, compiling and launching.
+
+You can get the latest code from from here using a subversion client of your choice.
+
+There is a complete test application bundled into the JAR and also the source code. The GWT compiler is clever enough to only pick out the code that you actually use in your application so don’t worry about it getting compiled into your final web image.
+
+I **strongly** recommend you get the complete project and open the test application up in Eclipse. Any reasonably competent java programmer should be able to understand how things hang together by a cursory look at the code.
+
+
+**2)** I will come to how to download the javascript for the timeline later but to get you started you must add the js include into your main html application file i.e.
+
+```
+<script src="js/api/ext/adapter/ext/ext-base.js" />
+	<script src="js/api/ext/ext-all.js" />  	
+	<script src="js/api/timeline-api.js"/>
+	<script src="js/util/timeline-helper.js"/>
+```
+
+
+**3)** In your application xml file you will have to add the lines:
+
+```
+   <inherits name='com.gwtext.GwtExt'/>
+<inherits name='com.netthreads.gwt.simile.timeline.Timeline' />
+```
+Note that I've found that GwtExt is sometimes inherited naturally. I do not know how it happens, but just doublecheck and add if necessary.
+
+also, you need to add the following stylesheet as well:
+
+```
+<stylesheet src="js/api/ext/resources/css/ext-all.css" />
+```
+
+**4)** You can use the timeline widget just like any other GWT widget.
+
+Each timeline object has to have an associated timeline renderer. The renderer is subclassed from ITimeLineRender and allows the code which builds the timeline features to be seperate from the actual widget code. Your best bet is to look at the example code. Specifically the Stonehenge timeline renderer ‘StonehengeRender’. If you are familiar with the javascript version of the timeline control you will immediately recognise the format.
+
+To create a widget is easy, e.g. using the StonehengeRender object.
+
+```
+TimeLineWidget simileWidget = new TimeLineWidget("100%", "100%", new StonehengeRender());
+```
+
+> _Note, if you do this, then you need to inherit the test module by adding:_ `<inherits name='com.netthreads.test.simile.timeline.TimeLineTest' />.`
+
+You can add this into a panel or composite widget in the same fashion as any other GWT widget.
+
+
+**5)** There are two mechanisms to load the timeline data. The first is a straight load from a url i.e.
+
+```
+String myData = "site/data/stonehenge.xml";
+simileWidget.load(myData);
+```
+
+This implements the ajax call in the underlying javascript code.
+
+The second is through the use of a callback function. To use this you must implement the ‘TimelineXMLHandler’ interface in a class e.g.
+
+To call:
+
+```
+TimeLineWidget.load(url, handler);
+```
+
+Where ‘handler’ is the class which implements the interface. The callback function is..
+
+```
+public void onCompletion(JavaScriptObject xml, String url)
+{
+simileWidget.getEventSource().load(xml, url);
+}
+```
+
+The url passed through the callback is the same as the one passed to the load function and seems to be required by the timeline to set a working directory base (go look at the javascript code). You can use the callback to intercept the xml data, open and close ‘loading popups’.
+
+Before you email me to ask about any of this stuff look at the example code. .
+
+
+**6)** Although I may include the javascript timeline code with an upcoming revision of the widget and example it’s worth knowing that you can download and bundle it into your app for more snappy startup times.
+
+You can use subversion (for whatever platform) and go to:
+
+
+> http://simile.mit.edu/repository/timeline/trunk/src/webapp/api
+
+and get the whole lot. Stick this under your public project folder e.g
+
+> \src\com\netthreads\test\simile\timeline\public\js\simile
+
+In your main html application file replace the js include mentioned in step (2) with
+
+
+<script src="js/simile/timeline-api.js"
+type="text/javascript">
+
+Unknown end tag for &lt;/script&gt;
+
+
+
+If you use the timeline in a GWT app then I would love to hear from you. For specific questions you are best off posting a question to the Google Web Toolkit forum or email me (see About page)

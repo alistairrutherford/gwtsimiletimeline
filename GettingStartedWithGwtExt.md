@@ -1,0 +1,183 @@
+# Introduction #
+This page was created because I wanted to document exactly what you needed to do to get this timeline up and running with using GWT-EXT.  The code for this demo can be found in the download section.
+
+
+# Details #
+
+### Step 0 ###
+
+Get all of the files that you need.  You need to get the following:
+  * Eclipse
+  * Cypal
+  * GWTEXT.jar
+  * GWT 1.5
+  * gwtsimiletimeline
+  * Get all of the needed JS
+
+## Step 1 ##
+  * Inherit the proper modules -
+
+```
+<inherits name='com.google.gwt.user.User'/>
+<inherits name='com.netthreads.gwt.simile.timeline.Timeline' />
+<inherits name='com.netthreads.test.simile.timeline.TimeLineTest' />
+<inherits name='com.gwtext.GwtExt' />  	
+```
+
+## Step 2 ##
+
+Code the timeline example using the test case that is bundled with the application.  Your code will look like this:
+
+```
+package run.client;
+
+import com.google.gwt.core.client.EntryPoint;
+import com.gwtext.client.widgets.Panel;
+import com.gwtext.client.widgets.Viewport;
+import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
+import com.netthreads.test.simile.timeline.client.StonehengeRender;
+
+public class Test implements EntryPoint {
+	public void onModuleLoad() {
+		TimeLineWidget simileWidget = 
+                    new TimeLineWidget("100%", "100%", new StonehengeRender());
+		String myData = "site/data/stonehenge.xml";
+		simileWidget.load(myData);	
+		Panel mainPanel = new Panel();
+		mainPanel.add(simileWidget);
+		new Viewport(mainPanel);
+	}
+}
+```
+
+
+## Step 3 ##
+Edit your html file so that it looks like this, make sure that you add the div tag: loadingtext!
+
+```
+<html>
+	<head>
+		<title>Wrapper HTML for Test</title>
+		<style>
+			body,td,a,div,.p{font-family:arial,sans-serif}
+			div,td{color:#000000}
+			a:link,.w,.w a:link{color:#0000cc}
+			a:visited{color:#551a8b}
+			a:active{color:#ff0000}
+		</style>		
+        <script src="js/api/timeline-api.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<iframe src="javascript:''" id="__gwt_historyFrame" style="width:0;height:0;border:0"></iframe>
+   		<script type="text/javascript" language="javascript" src="run.Test.nocache.js"></script>
+<div id="loadingtext"><p>Loading...</p></div>
+	</body>
+</html>
+```
+
+### Step 4 ###
+Getting your js scripts up and running -
+
+Break the gwtsimilietimeline jar apart and pull out the following directory
+com\netthreads\test\simile\timeline\public
+
+Copy js and paste this into your public folder.
+
+Since the bundled resource do not include ext, you need to copy the following components of EXT 2.0.2 in your path.    From ext, pull out the following pieces of code and place them in your public js/api/ext folder:
+```
+./resources
+./adapter
+ext-all.js
+ext-all-debug.js
+ext-core.js
+ext-core-debug.js
+```
+### Step 5 ###
+Setting up Data for Test Reading
+
+pull out the following directory
+com\netthreads\test\simile\timeline\public and copy the follwing folders into your
+public directory:
+
+  * css
+  * help
+  * site
+
+### Step 6 ###
+Link ext to your code by placing this at the bottom of your module.
+```
+   	<stylesheet src="js/api/ext/resources/css/ext-all.css" />
+	<script src="js/api/ext/adapter/ext/ext-base.js" />
+	<script src="js/api/ext/ext-all.js" />  
+```
+
+
+### Step 7 ###
+Quick review:
+
+Your HTML File should look like this:
+```
+<html>
+	<head>
+		<title>Wrapper HTML for Test</title>
+		<style>
+			body,td,a,div,.p{font-family:arial,sans-serif}
+			div,td{color:#000000}
+			a:link,.w,.w a:link{color:#0000cc}
+			a:visited{color:#551a8b}
+			a:active{color:#ff0000}
+		</style>		
+         <script src="js/api/timeline-api.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<iframe src="javascript:''" id="__gwt_historyFrame" style="width:0;height:0;border:0"></iframe>
+   		<script type="text/javascript" language="javascript" src="run.Test.nocache.js"></script>
+   		<div id="loadingtext"><p>Loading...</p></div>
+	</body>
+</html>
+```
+
+Your module should look something like this:
+```
+<module>
+	<!-- Inherit the core Web Toolkit stuff.                  -->
+	<inherits name='com.google.gwt.user.User'/>
+    <inherits name='com.gwtext.GwtExt' />  
+    <inherits name='com.netthreads.gwt.simile.timeline.Timeline' />
+    <inherits name='com.netthreads.test.simile.timeline.TimeLineTest' />
+    <inherits name="com.google.gwt.user.theme.standard.Standard"/>
+
+	<!-- Specify the app entry point class.                   -->
+	<entry-point class='run.client.Test'/>
+  	
+  	<stylesheet src="js/api/ext/resources/css/ext-all.css" />
+	<script src="js/api/ext/adapter/ext/ext-base.js" />
+	<script src="js/api/ext/ext-all.js" />  	  
+
+</module>
+```
+
+Your code should look something like this:
+```
+package run.client;
+
+import com.google.gwt.core.client.EntryPoint;
+import com.gwtext.client.widgets.Panel;
+import com.gwtext.client.widgets.Viewport;
+import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
+import com.netthreads.test.simile.timeline.client.StonehengeRender;
+
+public class Test implements EntryPoint {
+	public void onModuleLoad() {
+		TimeLineWidget simileWidget = new TimeLineWidget("100%", "100%", new StonehengeRender());
+		String myData = "site/data/stonehenge.xml";
+		simileWidget.load(myData);	
+		Panel mainPanel = new Panel();
+		mainPanel.add(simileWidget);
+		new Viewport(mainPanel);
+	}
+}
+
+```

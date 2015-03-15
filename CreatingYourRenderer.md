@@ -1,0 +1,85 @@
+# Introduction #
+
+The purpose of this page is to go over what you need to do to create a basic application using gwtsilimietimeline.  What we are basically going to do is to take a skeleton of the Stonehenge renderer and build our own.   This is not meant to be a detailed, feature rich explanation.
+
+# Details #
+
+0. This tutorial was written with the following facts in mind:
+
+Tools: GWT 1.5, Eclipse 3.3 Winter Europa.
+You have Stonehenge up and running
+
+1. We are going to create this class and then implement this interface for ITimeLineRenderer. Note that there are two functions that you need to inherit: for the time being, you can ignore the centerData function, as the framework for it will be created later.
+
+import com.netthreads.gwt.simile.timeline.client.ITimeLineRender;
+import com.netthreads.gwt.simile.timeline.client.TimeLineWidget;
+
+public class TimelineRendererTutorial implements ITimeLineRender {
+
+> public void render(TimeLineWidget widget) {
+> > // TODO Auto-generated method stub
+
+> }
+
+> public void centerData(TimeLineWidget widget,String date){
+> > // TODO Auto-generated method stub
+
+> }
+}
+
+2.  You may want resize your application:  You will drive yourself crazy if you try to
+change the size of the TimelineRendererTutorial object.  Instead, you must change the size of the widget inside the TimelineRendererTutorial class.  For our case, we are going to se t this size to:  widget.setPixelSize(200,200);
+
+This should now look like this:
+
+public class TimelineRendererTutorial implements ITimeLineRender {
+
+> public void render(TimeLineWidget widget) {
+> > // TODO Auto-generated method stub
+> > //width **height
+> > widget.setPixelSize(700,300);**
+
+
+3. Now, you have to think about the different types of objects you are going to use for your bands.  Now, you need to understand how bands work in Similie Timeline.  For this demonstration, we are going to have two bands scroll in synchrony, meaning that we are going to have
+
+The very next thing that you want to think about is what type of connection you want your time line to have with the two different bars. All of your bands will be held in the bandInfos ArrayList.
+`
+
+> ArrayList bandInfos = widget.getBandInfos();
+`
+
+4.  We will have to fill the bandInfos with the top and bottom bands that we want to display.
+
+> This means that we are going to have something that looks like this:
+`
+> > BottomBand bottom = new BottomBand();
+`
+Well, before we make the band, we want to create objects will all of the necessary options in it.   We do that through the BandOptions object.
+`
+
+> BandOptions bottomOpts = BandOptions.create();
+> bandInfos.add(bottomOpts);
+`
+This seems pretty easy, however, if the band needs an eventSource so they know how render themselves.  This is done via
+`
+EventSource eventSource = widget.getEventSource();
+`
+What this means is that eventSource holds an event for the widget.  Duh?  Ok, what is really happening?  This means that the eventSource is getting pulled from the JSNI associated with the Similie Timeline default event source.  If we were to look at this code in the Similie JS library, you would find something that looks like this:
+
+> `var Timeline = new Object(); `
+
+From the JSNI interface, the gwtsimilietimeline calls
+
+> `"var source = new $wnd.Timeline.DefaultEventSource();"`
+
+So, what this basically means is that we have to take into account the fact that our bottom (in this case) needs to have an event registered to it.  bottomOpts.setEventSource(eventSource);
+
+5. Creating the bottom band options:
+
+
+
+
+
+
+
+
